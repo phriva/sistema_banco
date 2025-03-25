@@ -19,9 +19,13 @@ while True:
 
     if opcao == 'd':
         deposito = float(input("Digite o valor do deposito R$ "))
-        saldo += deposito
-        extrato += f"Deposito de R$ {deposito:.2f}\n"
-        print("Deposito realizado com sucesso!!")
+        
+        if deposito > 0:
+            saldo += deposito
+            extrato += f"Deposito de R$ {deposito:.2f}\n"
+            print("Deposito realizado com sucesso!!")
+        else:
+            print("Valor invalido insira um valor positivo!!")
 
     elif opcao == 's':
         if numero_saques < LIMITE_SAQUES:
@@ -30,11 +34,14 @@ while True:
 
             if saque <= limite:
                 if saque <= saldo:
-                    saldo -= saque
-                    limite -= saque
-                    numero_saques += 1
-                    extrato += f"Saque de R$ {saque:.2f}\n"
-                    print("Saque realizado com sucesso!!")
+                    if saque > 0:
+                        saldo -= saque
+                        limite -= saque
+                        numero_saques += 1
+                        extrato += f"Saque de R$ {saque:.2f}\n"
+                        print("Saque realizado com sucesso!!")
+                    else:
+                        print("Valor invalido!!")
                 else:
                     print("Saldo insuficiente!!")
             else:
